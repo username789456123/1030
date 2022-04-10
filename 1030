@@ -1,0 +1,28 @@
+#include <stdio.h>
+int cmp(const void *a,const void *b){
+	return *(int *)a-*(int *)b;
+}
+int main(){
+	int n;
+	long long p;
+	scanf("%d %lld",&n,&p);
+	int num[n];
+	for(int i=0;i<n;i++)
+	scanf("%d",&num[i]);
+	qsort(num,n,sizeof(num[0]),cmp);
+	int result=0,temp=0;
+	for(int i=0;i<n;i++){
+		for(int j=i+result;j<n;j++){
+			if(num[j]<=num[i]*p){
+				temp=j-i+1;
+				if(temp>result)
+				result=temp;
+			}
+			else{
+				break;
+			}
+		}
+	}
+	printf("%d",result);
+	return 0;
+}
